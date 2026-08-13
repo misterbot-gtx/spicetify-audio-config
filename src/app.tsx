@@ -1,5 +1,6 @@
 import "./style.css";
 import { closeDevicePopup, isDevicePopupOpen, openDevicePopup } from "./ui/popup";
+import { watchSettingsPage } from "./ui/settings";
 
 /**
  * Controle de volume da playbar. Confirmado no bundle do Spotify (5095.js);
@@ -35,4 +36,7 @@ export default async function main() {
 	// Delegação no document: a playbar remonta várias vezes durante a sessão,
 	// e um listener preso ao elemento morreria junto com ele.
 	document.addEventListener("contextmenu", onContextMenu, true);
+
+	// Segunda porta de entrada: uma seção na página de Configurações do Spotify.
+	watchSettingsPage();
 }

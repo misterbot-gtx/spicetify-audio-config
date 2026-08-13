@@ -28,6 +28,12 @@ Um clique troca e fecha o popup. `Esc` ou um clique fora também fecham. Clicar 
 
 A escolha é **lembrada pelo próprio Spotify** entre reinícios — a extensão não guarda estado nenhum.
 
+### Pela página de Configurações
+
+A mesma lista também aparece em **Configurações**, numa seção "Saída de áudio" logo abaixo de "Qualidade do áudio". O título herda as classes de um título nativo em tempo de execução, então acompanha o estilo do Spotify entre versões.
+
+Não dá para colocar a opção no menu do app (*Arquivo / Editar / Exibir / Reprodução / Ajuda*): esse menu é desenhado **nativamente**, fora do Chromium — nenhum texto dele existe no DOM, então extensão nenhuma o alcança. O menu do perfil também não serve nesta versão: `Spicetify.Menu.Item` registra sem erro, mas o Spotify reescreveu esse menu e ele não passa mais pelo `ContextMenuV2` que o Spicetify engancha, então o item nunca é renderizado.
+
 > A troca vale para novos fluxos de áudio. Se uma música já estiver tocando, pode ser preciso pausar e dar play para o Spotify reabrir o dispositivo novo.
 
 ## Instalação
@@ -70,6 +76,7 @@ npm run typecheck
 | [src/app.tsx](src/app.tsx) | Entrypoint: captura do `contextmenu` no controle de volume |
 | [src/ui/popup.tsx](src/ui/popup.tsx) | Popup ancorado: posicionamento, ciclo de vida do React root, fechamento |
 | [src/ui/DeviceList.tsx](src/ui/DeviceList.tsx) | Lista de dispositivos e estados de carregando/erro |
+| [src/ui/settings.tsx](src/ui/settings.tsx) | Seção injetada na página de Configurações do Spotify |
 | [src/ui/icons.tsx](src/ui/icons.tsx) | Ícones SVG, nativos do Spicetify e próprios |
 | [src/lib/audio.ts](src/lib/audio.ts) | Acesso às APIs nativas do Spotify |
 | [scripts/install-local.js](scripts/install-local.js) | Copia `dist/` para a pasta Extensions do Spicetify |
