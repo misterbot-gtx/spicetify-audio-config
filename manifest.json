@@ -1,7 +1,7 @@
 {
   "name": "Audio Output Switcher",
   "description": "Right-click the volume icon to send Spotify's audio to another output device, without changing your system default. No setup, no dependencies.",
-  "preview": "preview.png",
+  "preview": "docs/preview.png",
   "main": "dist/audio-config.js",
   "readme": "README.md",
   "authors": [
