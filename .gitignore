@@ -61,3 +61,4 @@ dist/
 .env
 .vscode/
 coverage/
+package-lock.json
