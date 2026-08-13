@@ -3,6 +3,8 @@ import DeviceList from "./DeviceList";
 
 const GAP = 8;
 const VIEWPORT_MARGIN = 8;
+/** Folga antes de confirmar um blur — o Spotify devolve o foco em ~1 ms. */
+const BLUR_GRACE_MS = 150;
 
 interface OpenOptions {
 	/** Retangulo do elemento que disparou o popup (o controle de volume). */
@@ -90,10 +92,25 @@ export function openDevicePopup({ anchor }: OpenOptions): void {
 		}
 	};
 
+	/**
+	 * O Spotify dispara pares blur/focus transitórios — medido: 1 ms entre eles —
+	 * quando move o foco internamente. Fechar no blur cru fazia o popup sumir
+	 * sozinho logo depois de abrir, então confirmamos que a janela realmente
+	 * perdeu o foco antes de fechar.
+	 */
+	const onBlur = () => {
+		setTimeout(() => {
+			if (!document.hasFocus()) closeDevicePopup();
+		}, BLUR_GRACE_MS);
+	};
+
+	// Redimensionar reposiciona em vez de fechar: a âncora continua válida.
+	const onResize = () => position(element, anchor);
+
 	document.addEventListener("pointerdown", onPointerDown, true);
 	document.addEventListener("keydown", onKeyDown, true);
-	window.addEventListener("resize", closeDevicePopup);
-	window.addEventListener("blur", closeDevicePopup);
+	window.addEventListener("resize", onResize);
+	window.addEventListener("blur", onBlur);
 
 	open = {
 		element,
@@ -101,8 +118,8 @@ export function openDevicePopup({ anchor }: OpenOptions): void {
 			observer.disconnect();
 			document.removeEventListener("pointerdown", onPointerDown, true);
 			document.removeEventListener("keydown", onKeyDown, true);
-			window.removeEventListener("resize", closeDevicePopup);
-			window.removeEventListener("blur", closeDevicePopup);
+			window.removeEventListener("resize", onResize);
+			window.removeEventListener("blur", onBlur);
 			unmount();
 			element.remove();
 		},
