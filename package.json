@@ -1,0 +1,28 @@
+{
+  "name": "audio_config",
+  "version": "1.0.0",
+  "description": "Extensão Spicetify para trocar o dispositivo de saída de áudio do Windows sem sair do Spotify",
+  "main": "src/app.tsx",
+  "scripts": {
+    "build": "spicetify-creator --minify --out=dist",
+    "watch": "spicetify-creator --watch --out=dist",
+    "install-local": "node scripts/install-local.js",
+    "typecheck": "tsc --noEmit",
+    "helper": "powershell -NoProfile -ExecutionPolicy Bypass -File helper/audio-helper.ps1",
+    "helper:autostart": "powershell -NoProfile -ExecutionPolicy Bypass -File helper/install-autostart.ps1",
+    "helper:svv": "powershell -NoProfile -ExecutionPolicy Bypass -File helper/install-soundvolumeview.ps1"
+  },
+  "keywords": [
+    "spicetify",
+    "spotify",
+    "audio"
+  ],
+  "author": "APK",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
+    "spicetify-creator": "^1.0.17",
+    "typescript": "^5.4.0"
+  }
+}

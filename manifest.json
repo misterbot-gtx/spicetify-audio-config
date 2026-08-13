@@ -1,0 +1,14 @@
+{
+  "name": "Audio Output Switcher",
+  "description": "Right-click the volume icon to send Spotify's audio to another output device — without changing the rest of Windows. Requires a local helper (Windows only).",
+  "preview": "preview.png",
+  "main": "dist/audio-config.js",
+  "readme": "README.md",
+  "authors": [
+    {
+      "name": "misterbot-gtx",
+      "url": "https://github.com/misterbot-gtx"
+    }
+  ],
+  "tags": ["audio", "windows", "utility"]
+}

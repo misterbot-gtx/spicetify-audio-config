@@ -1,0 +1,13 @@
+{
+  "nameId": "audio-config",
+  "description": "Troca o dispositivo de saída de áudio direto do player do Spotify",
+  "main": "app.tsx",
+  "authors": [
+    {
+      "name": "APK",
+      "url": "https://github.com/"
+    }
+  ],
+  "tags": ["audio", "util"],
+  "readme": "README.md"
+}
