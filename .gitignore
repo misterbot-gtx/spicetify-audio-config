@@ -6,7 +6,9 @@ node_modules/
 # bundle direto do repositorio (manifest.json -> "main": "dist/audio-config.js"),
 # entao ele precisa estar versionado. Ignorar esta pasta publica uma extensao
 # quebrada.
-dist/
+# Precisa ser "dist/*" e nao "dist/": o git nao reinclui um arquivo cujo
+# diretorio pai foi excluido, entao a excecao abaixo so funciona nesta forma.
+dist/*
 !dist/audio-config.js
 
 # Arquivos de ambiente
@@ -57,7 +59,6 @@ coverage/
 *.local
 
 node_modules/
-dist/
 .env
 .vscode/
 coverage/
