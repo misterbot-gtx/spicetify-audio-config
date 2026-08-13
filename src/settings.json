@@ -4,8 +4,8 @@
   "main": "app.tsx",
   "authors": [
     {
-      "name": "APK",
-      "url": "https://github.com/"
+      "name": "misterbot-gtx",
+      "url": "https://github.com/misterbot-gtx"
     }
   ],
   "tags": ["audio", "util"],

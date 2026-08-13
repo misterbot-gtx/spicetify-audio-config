@@ -14,7 +14,7 @@
     "spotify",
     "audio"
   ],
-  "author": "APK",
+  "author": "misterbot-gtx",
   "license": "ISC",
   "devDependencies": {
     "@types/react": "^18.3.31",
