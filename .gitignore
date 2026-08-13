@@ -1,9 +1,3 @@
-node_modules/
+﻿node_modules/
 
-# Binario de terceiros: baixado por helper/install-soundvolumeview.ps1.
-# Nao redistribuimos o utilitario da NirSoft junto com o repositorio.
-helper/SoundVolumeView.exe
 
-# Gerados em runtime pelo helper / pelo instalador de auto-start.
-helper/state.json
-helper/start-helper-hidden.vbs

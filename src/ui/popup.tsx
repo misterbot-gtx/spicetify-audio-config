@@ -1,5 +1,5 @@
 import React from "react";
-import DeviceModal from "./DeviceModal";
+import DeviceList from "./DeviceList";
 
 const GAP = 8;
 const VIEWPORT_MARGIN = 8;
@@ -60,8 +60,8 @@ export function openDevicePopup({ anchor }: OpenOptions): void {
 
 	// Escolher um dispositivo fecha o popup, como em qualquer menu de contexto.
 	// Adiado para não desmontar a raiz React de dentro do próprio handler.
-	const node = React.createElement(DeviceModal, {
-		onDeviceChange: () => setTimeout(closeDevicePopup, 0),
+	const node = React.createElement(DeviceList, {
+		onSelected: () => setTimeout(closeDevicePopup, 0),
 	});
 	const createRoot = (Spicetify.ReactDOM as any).createRoot;
 	let unmount: () => void;
