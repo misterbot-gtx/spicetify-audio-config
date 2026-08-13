@@ -6,7 +6,7 @@ node_modules/
 # bundle direto do repositorio (manifest.json -> "main": "dist/audio-config.js"),
 # entao ele precisa estar versionado. Ignorar esta pasta publica uma extensao
 # quebrada.
-dist/*
+dist/
 !dist/audio-config.js
 
 # Arquivos de ambiente
@@ -55,3 +55,9 @@ coverage/
 
 # Arquivos locais
 *.local
+
+node_modules/
+dist/
+.env
+.vscode/
+coverage/
