@@ -90,8 +90,20 @@
 
 .audiocfg-icon {
   flex-shrink: 0;
-  font-size: 16px;
-  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  color: var(--spice-subtext, #b3b3b3);
+}
+
+.audiocfg-item--active .audiocfg-icon {
+  color: var(--spice-button, #1ed760);
+}
+
+.audiocfg-glyph {
+  display: block;
 }
 
 .audiocfg-name {

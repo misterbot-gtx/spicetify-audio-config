@@ -8,22 +8,12 @@ import {
 	selectDevice,
 } from "../lib/audio";
 
+import { DeviceIcon, SystemIcon } from "./icons";
+
 const { useState, useEffect, useCallback, useRef } = React;
 
 /** Enquanto o popup está aberto, reflete dispositivos conectados/removidos. */
 const REFRESH_MS = 3000;
-
-const ICONS: Record<string, string> = {
-	headphones: "🎧",
-	headset: "🎧",
-	speakers: "🔈",
-};
-
-function iconFor(device: AudioDevice, active: boolean): string {
-	if (active) return "🔊";
-	if (device.transportType === "bluetooth") return "🎧";
-	return ICONS[device.terminalType] ?? "🔈";
-}
 
 interface Props {
 	onSelected?: () => void;
@@ -115,7 +105,9 @@ export default function DeviceList({ onSelected }: Props) {
 								disabled={busyId !== null}
 								aria-pressed={active}
 							>
-								<span className="audiocfg-icon">{iconFor(device, active)}</span>
+								<span className="audiocfg-icon">
+									<DeviceIcon device={device} active={active} />
+								</span>
 								<span className="audiocfg-name">
 									{device.name}
 									{device.isSystemDefault && (
@@ -141,7 +133,9 @@ export default function DeviceList({ onSelected }: Props) {
 				onClick={() => choose(FOLLOW_SYSTEM, "padrão do Windows")}
 				disabled={busyId !== null}
 			>
-				<span className="audiocfg-icon">↩</span>
+				<span className="audiocfg-icon">
+					<SystemIcon />
+				</span>
 				<span className="audiocfg-name">Seguir o padrão do Windows</span>
 				{followingSystem && <span className="audiocfg-badge audiocfg-badge--active">ativo</span>}
 			</button>
