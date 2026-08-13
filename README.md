@@ -3,7 +3,7 @@
 Extensão [Spicetify](https://spicetify.app/) que troca a **saída de áudio do Spotify** sem sair do player. Clique com o botão direito no controle de volume e escolha o dispositivo.
 
 <p align="center">
-  <img src="docs/popup.png" alt="Popup de saída de áudio aberto sobre a barra do player, listando três dispositivos com o ativo destacado em verde" width="433">
+  <img src="https://raw.githubusercontent.com/misterbot-gtx/spicetify-audio-config/main/docs/popup.png" alt="Popup de saída de áudio aberto sobre a barra do player, listando três dispositivos com o ativo destacado em verde" width="433">
 </p>
 
 A troca vale **só para o Spotify**. O dispositivo padrão do Windows continua onde está, e os outros aplicativos não são afetados — dá para mandar a música para a caixa de som enquanto a chamada continua no headset.
@@ -15,7 +15,7 @@ Não há instalação extra, processo em segundo plano ou dependência. É só o
 Clique com o **botão direito no controle de volume** da barra do player — funciona no ícone e na barrinha:
 
 <p align="center">
-  <img src="preview.png" alt="Spotify aberto na playlist Músicas Curtidas com o popup da extensão no canto inferior direito" width="820">
+  <img src="https://raw.githubusercontent.com/misterbot-gtx/spicetify-audio-config/main/preview.png" alt="Spotify aberto na playlist Músicas Curtidas com o popup da extensão no canto inferior direito" width="820">
 </p>
 
 O popup abre logo acima do controle e lista os dispositivos de saída disponíveis:
