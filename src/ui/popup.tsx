@@ -78,9 +78,22 @@ export function openDevicePopup({ anchor }: OpenOptions): void {
 	}
 
 	position(element, anchor);
-	// O conteúdo troca de tamanho quando a lista de dispositivos chega.
-	const observer = new ResizeObserver(() => position(element, anchor));
+
+	/**
+	 * O popup nasce pequeno ("Lendo dispositivos…") e cresce quando a lista
+	 * chega. Sem reposicionar, ele fica ancorado pela altura errada e transborda
+	 * a tela — medido: abria em top=1177 com 51px e ficava lá depois de crescer
+	 * para 268px. Observamos o container e o corpo, e ainda agendamos algumas
+	 * passadas, porque o render do React 18 é assíncrono.
+	 */
+	const reposition = () => position(element, anchor);
+	const observer = new ResizeObserver(reposition);
 	observer.observe(element);
+	observer.observe(body);
+
+	const passes = [0, 60, 180, 400, 900].map((delay) =>
+		window.setTimeout(() => requestAnimationFrame(reposition), delay)
+	);
 
 	const onPointerDown = (event: PointerEvent) => {
 		if (!element.contains(event.target as Node)) closeDevicePopup();
@@ -115,6 +128,7 @@ export function openDevicePopup({ anchor }: OpenOptions): void {
 	open = {
 		element,
 		dispose: () => {
+			passes.forEach(clearTimeout);
 			observer.disconnect();
 			document.removeEventListener("pointerdown", onPointerDown, true);
 			document.removeEventListener("keydown", onKeyDown, true);

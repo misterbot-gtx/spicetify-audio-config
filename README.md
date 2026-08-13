@@ -28,6 +28,10 @@ Um clique troca e fecha o popup. `Esc` ou um clique fora também fecham. Clicar 
 
 A escolha é **lembrada pelo próprio Spotify** entre reinícios — a extensão não guarda estado nenhum.
 
+### Pelo atalho de teclado
+
+**`Ctrl` + `Shift` + `O`** abre e fecha a mesma lista, ancorada no controle de volume. É o equivalente possível ao menu *Reprodução* — que expõe suas ações por atalho (`Ctrl`+`↑` / `Ctrl`+`↓`) mas não aceita itens novos, veja abaixo.
+
 ### Pela página de Configurações
 
 A mesma lista também aparece em **Configurações**, numa seção "Saída de áudio" logo abaixo de "Qualidade do áudio". O título herda as classes de um título nativo em tempo de execução, então acompanha o estilo do Spotify entre versões.

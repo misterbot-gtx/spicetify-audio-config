@@ -9,6 +9,37 @@ import { watchSettingsPage } from "./ui/settings";
 const VOLUME_BAR = '[data-testid="volume-bar"], .volume-bar, .main-nowPlayingBar-volumeBar';
 const VOLUME_ICON = '[data-testid="volume-bar-toggle-mute-button"], .volume-bar__icon-button';
 
+/**
+ * O menu Reprodução do app lista ações por atalho (Ctrl+↑ / Ctrl+↓ para volume),
+ * mas é desenhado nativamente e nenhuma extensão o alcança — verificado com o
+ * menu aberto na tela enquanto uma sentinela varria o DOM, e confirmado no
+ * i18n do xpui, que não tem os títulos dele. Este atalho é o equivalente
+ * possível: mesma forma de acesso, sem depender do menu.
+ */
+function onKeyDown(event: KeyboardEvent) {
+	if (!event.ctrlKey || !event.shiftKey || event.altKey) return;
+	if (event.code !== "KeyO") return;
+
+	event.preventDefault();
+	event.stopPropagation();
+	togglePopupAtVolume();
+}
+
+function togglePopupAtVolume() {
+	if (isDevicePopupOpen()) {
+		closeDevicePopup();
+		return;
+	}
+
+	const bar = document.querySelector(VOLUME_BAR);
+	const anchor = bar
+		? (bar.querySelector(VOLUME_ICON) ?? bar).getBoundingClientRect()
+		: // Sem playbar: ancora no rodapé direito, onde ela ficaria.
+			new DOMRect(window.innerWidth - 240, window.innerHeight - 80, 48, 48);
+
+	openDevicePopup({ anchor });
+}
+
 function onContextMenu(event: MouseEvent) {
 	const target = event.target as HTMLElement | null;
 	const bar = target?.closest?.(VOLUME_BAR);
@@ -36,6 +67,7 @@ export default async function main() {
 	// Delegação no document: a playbar remonta várias vezes durante a sessão,
 	// e um listener preso ao elemento morreria junto com ele.
 	document.addEventListener("contextmenu", onContextMenu, true);
+	document.addEventListener("keydown", onKeyDown, true);
 
 	// Segunda porta de entrada: uma seção na página de Configurações do Spotify.
 	watchSettingsPage();
